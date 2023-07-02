@@ -2,8 +2,6 @@ from flask import Flask, render_template, request, jsonify, send_file
 import requests
 from bs4 import BeautifulSoup
 import webbrowser
-import pandas as pd
-import os
 
 app = Flask(__name__)
 
@@ -64,7 +62,7 @@ def save_results_to_txt(results):
 
 @app.route('/download')
 def download():
-    file_path = 'search_results.txt'
+    file_path = 'resultados.txt'
     return send_file(file_path, as_attachment=True)
 
 if __name__ == '__main__':
