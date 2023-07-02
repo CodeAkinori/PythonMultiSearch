@@ -1,0 +1,126 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Buscador</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+
+        form {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        input[type="text"] {
+            padding: 8px;
+            width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        input[type="submit"] {
+            padding: 8px 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        #results {
+            margin-top: 20px;
+        }
+
+        #results h2 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        #results ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        #results li {
+            margin-bottom: 5px;
+        }
+
+        #downloadButton {
+            display: none;
+            margin-top: 20px;
+            text-align: center;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Buscador</h1>
+    <form method="POST" action="/search">
+        <input type="text" name="search_term" placeholder="Digite o termo de pesquisa" required>
+        <input type="submit" value="Pesquisar">
+    </form>
+    <div id="results"></div>
+
+    <a id="downloadButton" href="#">Download Results</a>
+
+    <script>
+        // Função para enviar a requisição AJAX quando o formulário é submetido
+        document.querySelector('form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Impede o comportamento padrão do formulário
+            var formData = new FormData(this);
+
+            // Envia a requisição AJAX
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/search', true);
+            xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                    var results = JSON.parse(xhr.responseText);
+                    displayResults(results);
+                    toggleDownloadButton(true);
+                }
+            };
+            xhr.send(formData);
+        });
+
+        // Função para exibir os resultados na página
+        function displayResults(results) {
+            var resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = '';
+
+            Object.keys(results).forEach(function(engine) {
+                var engineDiv = document.createElement('div');
+                engineDiv.innerHTML = '<h2>' + engine + '</h2>';
+
+                var linksList = document.createElement('ul');
+                results[engine].forEach(function(link) {
+                    var listItem = document.createElement('li');
+                    var linkElement = document.createElement('a');
+                    linkElement.href = link;
+                    linkElement.innerText = link;
+                    listItem.appendChild(linkElement);
+                    linksList.appendChild(listItem);
+                });
+
+                engineDiv.appendChild(linksList);
+                resultsDiv.appendChild(engineDiv);
+            });
+        }
+
+        // Função para mostrar/ocultar o botão de download
+        function toggleDownloadButton(show) {
+            var downloadButton = document.getElementById('downloadButton');
+            downloadButton.style.display = show ? 'block' : 'none';
+        }
+    </script>
+</body>
+</html>

@@ -1,18 +1,28 @@
 # PythonMultiSearch
-Para usar o script MultiSearch.py, siga as instruções abaixo:
+## To use MultiSearch, follow the instructions below:
 
-Certifique-se de ter Python 3 instalado no seu computador.
+### Make sure you have Python 3 installed on your computer.
+<br>
 
-Abra um terminal ou prompt de comando e navegue até a pasta onde o arquivo MultiSearch.py está localizado.
+Open a terminal or command prompt and type:
 
-Execute o script digitando python MultiSearch.py no terminal ou prompt de comando.
+```
+python ./app.py
+```
 
-Quando solicitado, digite o termo de pesquisa que deseja usar e pressione Enter.
+Enter the requested address in the terminal:
 
-O script executará uma pesquisa no Google, Bing e Yahoo e exibirá os links dos resultados de pesquisa.
+```
+http://127.0.0.1:5000
+```
 
-O script também abrirá uma nova aba no navegador padrão do seu computador com os resultados de pesquisa do Google, Bing e Yahoo.
+#### The script will perform a search on Google, Bing, DuckDuckGo, and Yahoo, and display the links of the search results.
+<br>
 
-O script usa a biblioteca requests para fazer requisições HTTP aos mecanismos de pesquisa e a biblioteca BeautifulSoup para analisar as respostas HTML e extrair os links dos resultados de pesquisa. É possível modificar o script para adicionar ou remover mecanismos de pesquisa ou para personalizar o cabeçalho HTTP usado nas solicitações.
+#### The script will also open a new tab in your computer's default browser with the search results from Google, Bing, Yahoo, and DuckDuckGo.
+<br>
 
-O MultiSearch.py é um exemplo básico de como automatizar o processo de pesquisa em vários mecanismos de pesquisa e extrair os resultados de pesquisa. É importante ressaltar que, dependendo do uso que você fizer do script, pode haver limitações legais e éticas envolvidas no uso de mecanismos de pesquisa e raspagem da web. É recomendável verificar as políticas de uso dos mecanismos de pesquisa antes de utilizar o script para fins comerciais ou de pesquisa.
+#### The script uses the requests library to make HTTP requests to the search engines and the BeautifulSoup library to parse the HTML responses and extract the links from the search results. You can modify the script to add or remove search engines or customize the HTTP header used in the requests.
+<br>
+
+#### MultiSearch is a basic example of how to automate the process of searching multiple search engines and extracting the search results. It is important to note that depending on how you use the script, there may be legal and ethical limitations involved in using search engines and web scraping. It is recommended to check the usage policies of the search engines before using the script for commercial or research purposes.
